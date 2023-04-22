@@ -14,7 +14,11 @@ export const resolvers = {
   },
   //  name should be same as the type of query
   Book: {
-    author: () => author,
+    author: (parent) => {
+      // it will print the parent query data 
+      console.log(parent);
+      return author;
+    },
   },
   Mutation: {
     createBook(_, { book }) {
@@ -27,3 +31,24 @@ export const resolvers = {
     },
   },
 };
+
+/* 
+fragments in grapqhl are used to reuse the query 
+
+ query Books {
+  books {
+    author {
+      ...author_Data
+    }
+    title
+    id
+    gender
+  }
+}
+
+fragment author_Data on Author{
+  id
+  name
+}
+
+*/
