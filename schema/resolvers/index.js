@@ -12,7 +12,18 @@ export const resolvers = {
       return books.find((book) => book.id == args.id);
     },
   },
+  //  name should be same as the type of query
   Book: {
     author: () => author,
+  },
+  Mutation: {
+    createBook(_, { book }) {
+      let new_book = {
+        id: books.length + 1,
+        ...book,
+      };
+      books.push(new_book);
+      return new_book;
+    },
   },
 };

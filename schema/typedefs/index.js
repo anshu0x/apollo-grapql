@@ -1,9 +1,8 @@
-export const typeDefs = `
+export const typeDefs =`
   enum Gender {
     Male
     Female
   }
-
   type Author {
     id : ID!
     name:String!
@@ -20,4 +19,14 @@ export const typeDefs = `
     books: [Book!]!
     book(id:ID!) : Book
   }
+   input createBook {
+    title:String!
+    author: String!
+    gender : Gender!
+  }
+
+  type Mutation {
+      createBook(book:createBook!):Book!
+   }
+  
 `;
