@@ -4,20 +4,12 @@ const author = {
   id: 1,
   name: "anshu",
 };
-import { books } from "../../fake.js";
+import { books, booksPub } from "../../fake.js";
 export const resolvers = {
   Query: {
     books: () => books,
     book: (parent, args, contextValue, info) => {
       return books.find((book) => book.id == args.id);
-    },
-  },
-  //  name should be same as the type of query
-  Book: {
-    author: (parent) => {
-      // it will print the parent query data 
-      console.log(parent);
-      return author;
     },
   },
   Mutation: {
@@ -28,6 +20,16 @@ export const resolvers = {
       };
       books.push(new_book);
       return new_book;
+    },
+  }, //  name should be same as the type of query
+  Book: {
+    author: (parent) => {
+      // it will print the parent query data
+      console.log(parent);
+      return author;
+    },
+    year: (parent) => {
+      return booksPub.find((book) => book.id == parent.id).year;
     },
   },
 };

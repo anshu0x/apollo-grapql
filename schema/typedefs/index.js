@@ -13,6 +13,7 @@ export const typeDefs =`
     title: String!
     author: Author!
     gender : Gender!
+    year : Int!
   }
 
   type Query {
