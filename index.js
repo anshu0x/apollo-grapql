@@ -15,6 +15,11 @@ const server = new ApolloServer({
 //  3. prepares your app to handle incoming requests
 const { url } = await startStandaloneServer(server, {
   listen: { port: 4000 },
+  //  it will be passed to every resolver  we can get from any resolver  we also have req , res in it
+  // we can get header from it from req.header
+  context: ({ req, res }) => {
+    return { req, res };
+  },
 });
 
 console.log(`🚀  Server ready at: ${url}`);

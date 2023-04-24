@@ -7,8 +7,12 @@ const author = {
 import { books, booksPub } from "../../fake.js";
 export const resolvers = {
   Query: {
-    books: () => books,
-    book: (parent, args, contextValue, info) => {
+    books: async (parent, argument, contextValue) => {
+      console.log(contextValue);
+      return books;
+    },
+    book: (parent, args, context, info) => {
+      console.log(context);
       return books.find((book) => book.id == args.id);
     },
   },
